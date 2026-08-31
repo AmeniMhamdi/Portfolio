@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<!--
+  PORTFOLIO — Ameni Mhamdi
+  Bilingual EN / FR, single file, no build step.
+
+  To finish:
+    - "cv-ameni-mhamdi.pdf" -> put your PDF next to this file
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ameni Mhamdi — QA Automation Engineer</title>
+<meta name="description" content="QA automation engineer, ISTQB v4.0 and A4Q Selenium certified. Playwright, Selenium, Cucumber, REST API testing, CI/CD.">
+<meta name="theme-color" content="#0a0a16">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0a0a16;
+    --panel:#111128;
+    --panel-2:#181838;
+    --line:#252549;
+    --text:#eeeef8;
+    --muted:#9494b6;
+    --mint:#35e0a1;
+    --violet:#8b6bff;
+    --coral:#ff7a6b;
+
+    --display:"Sora", system-ui, sans-serif;
+    --sans:"DM Sans", system-ui, -apple-system, sans-serif;
+    --mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+
+    --bar:66px;
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  @media (prefers-reduced-motion: no-preference){ html{scroll-behavior:smooth;} }
+
+  body{
+    margin:0;
+    background:var(--void);
+    color:var(--text);
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  a{color:inherit;}
+  :focus-visible{ outline:2px solid var(--mint); outline-offset:3px; border-radius:3px; }
+
+  .wrap{ width:100%; max-width:1120px; margin:0 auto; padding:0 26px; }
+
+  /* ================= header ================= */
+
+  .topbar{
+    position:fixed; inset:0 0 auto 0; z-index:40;
+    height:var(--bar);
+    background:rgba(10,10,22,.78);
+    backdrop-filter:saturate(150%) blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .wrap{ height:100%; display:flex; align-items:center; gap:22px; }
+
+  .progress{
+    position:absolute; left:0; bottom:-1px; height:2px; width:0%;
+    background:linear-gradient(90deg, var(--mint), var(--violet));
+  }
+
+  .mark{
+    font-family:var(--display); font-weight:800;
+    font-size:1.0625rem; letter-spacing:-.02em;
+    text-decoration:none;
+  }
+  .mark i{ color:var(--mint); font-style:normal; }
+
+  .topnav{ margin-left:auto; }
+  .topnav ul{ display:flex; gap:28px; list-style:none; margin:0; padding:0; }
+  .topnav a{
+    font-size:.875rem; color:var(--muted); text-decoration:none;
+    position:relative; padding:6px 0;
+  }
+  .topnav a::after{
+    content:""; position:absolute; left:0; right:0; bottom:0;
+    height:1px; background:var(--mint);
+    transform:scaleX(0); transform-origin:left;
+    transition:transform .22s ease;
+  }
+  .topnav a:hover{ color:var(--text); }
+  .topnav a:hover::after, .topnav a[aria-current="true"]::after{ transform:scaleX(1); }
+  .topnav a[aria-current="true"]{ color:var(--text); }
+
+  .lang{
+    display:flex; border:1px solid var(--line);
+    border-radius:999px; padding:3px; background:var(--panel);
+  }
+  .lang button{
+    font:500 .6875rem/1 var(--mono);
+    border:0; background:transparent; color:var(--muted);
+    padding:6px 10px; border-radius:999px; cursor:pointer;
+    transition:color .2s ease, background .2s ease;
+  }
+  .lang button[aria-pressed="true"]{ background:var(--mint); color:#04150e; }
+
+  /* ================= hero ================= */
+
+  .hero{
+    position:relative;
+    padding:calc(var(--bar) + 74px) 0 84px;
+    overflow:hidden;
+  }
+  .glow{
+    position:absolute; z-index:0; pointer-events:none;
+    width:760px; height:760px; border-radius:50%;
+    left:var(--gx, 62%); top:var(--gy, 8%);
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle, rgba(139,107,255,.20), rgba(53,224,161,.09) 42%, transparent 66%);
+    filter:blur(10px);
+    transition:left .8s cubic-bezier(.2,.7,.3,1), top .8s cubic-bezier(.2,.7,.3,1);
+  }
+  .hero .wrap{ position:relative; z-index:1; display:grid; gap:56px; align-items:center; }
+  @media (min-width:960px){
+    .hero .wrap{ grid-template-columns:minmax(0,1fr) minmax(400px,.88fr); }
+  }
+
+  .status{
+    display:inline-flex; align-items:center; gap:9px;
+    font-family:var(--mono); font-size:.75rem;
+    color:var(--mint);
+    border:1px solid rgba(53,224,161,.3);
+    background:rgba(53,224,161,.06);
+    border-radius:999px; padding:6px 14px;
+    margin:0 0 26px;
+  }
+  .status::before{
+    content:""; width:6px; height:6px; border-radius:50%; background:var(--mint);
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .status::before{ animation:blink 2.4s ease-in-out infinite; }
+    @keyframes blink{ 0%,100%{opacity:1;} 50%{opacity:.28;} }
+  }
+
+  .hero h1{
+    font-family:var(--display); font-weight:800;
+    font-size:clamp(3rem, 9vw, 5.6rem);
+    line-height:.94; letter-spacing:-.045em;
+    margin:0 0 18px;
+  }
+  .hero h1 span{ display:block; }
+
+  .kicker{
+    font-family:var(--mono); font-size:.9375rem;
+    color:var(--mint); margin:0 0 20px;
+  }
+  .pitch{
+    font-size:1.0625rem; line-height:1.66;
+    color:var(--muted); max-width:46ch; margin:0 0 34px;
+  }
+
+  .cta-row{ display:flex; flex-wrap:wrap; gap:13px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    text-decoration:none; cursor:pointer;
+    font:500 .9375rem/1 var(--sans);
+    padding:14px 24px; border-radius:999px;
+    border:1px solid transparent;
+    transition:transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+  }
+  .btn:active{ transform:translateY(1px); }
+  .btn-solid{ background:var(--mint); color:#04150e; }
+  .btn-solid:hover{ background:#5ff0bb; }
+  .btn-ghost{ border-color:var(--line); color:var(--text); }
+  .btn-ghost:hover{ border-color:var(--mint); color:var(--mint); }
+
+  /* ---------- test runner ---------- */
+
+  .runner{
+    background:linear-gradient(180deg, var(--panel-2), var(--panel));
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 40px 80px -40px rgba(0,0,0,.9);
+  }
+  .runner-head{
+    display:flex; align-items:center; gap:7px;
+    padding:12px 16px; border-bottom:1px solid var(--line);
+  }
+  .runner-head i{ width:9px; height:9px; border-radius:50%; background:#31315e; }
+  .runner-head b{
+    margin-left:8px; font:400 .75rem/1 var(--mono);
+    color:var(--muted); font-weight:400;
+  }
+  .runner-body{
+    padding:16px; min-height:212px;
+    font-family:var(--mono); font-size:.78rem; line-height:1.5;
+  }
+  .runner-body ol{ list-style:none; margin:0; padding:0; }
+  .runner-body li{
+    display:flex; gap:9px; align-items:baseline;
+    padding:5px 0; color:#c8c8e2;
+  }
+  .runner-body li .tick{ color:var(--mint); flex:none; }
+  .runner-body li .spin{ color:var(--violet); flex:none; }
+  .runner-body li .ms{ margin-left:auto; color:#5c5c86; flex:none; padding-left:10px; }
+  @media (prefers-reduced-motion: no-preference){
+    .runner-body li{ animation:slip .3s ease backwards; }
+    @keyframes slip{ from{opacity:0; transform:translateX(-8px);} to{opacity:1; transform:none;} }
+  }
+
+  .runner-sum{
+    margin-top:12px; padding-top:12px;
+    border-top:1px dashed var(--line);
+    color:var(--muted); font-size:.75rem;
+  }
+  .runner-sum b{ color:var(--mint); font-weight:500; }
+
+  .runner-foot{
+    display:flex; align-items:center; gap:14px;
+    padding:13px 16px; border-top:1px solid var(--line);
+    background:rgba(0,0,0,.18);
+  }
+  .track{ flex:1; height:3px; border-radius:2px; background:#25254a; overflow:hidden; }
+  .track div{
+    height:100%; width:0%;
+    background:linear-gradient(90deg, var(--mint), var(--violet));
+    transition:width .3s ease;
+  }
+  .run-btn{
+    font:500 .75rem/1 var(--mono);
+    border:1px solid var(--line); background:transparent; color:var(--text);
+    padding:9px 15px; border-radius:999px; cursor:pointer;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .run-btn:hover:not(:disabled){ border-color:var(--mint); color:var(--mint); }
+  .run-btn:disabled{ opacity:.5; cursor:default; }
+
+  /* ================= ticker ================= */
+
+  .ticker{
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    background:var(--panel);
+    overflow:hidden; padding:15px 0;
+    mask-image:linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+    -webkit-mask-image:linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  }
+  .ticker ul{
+    display:flex; gap:0; list-style:none; margin:0; padding:0;
+    width:max-content;
+  }
+  .ticker li{
+    font-family:var(--mono); font-size:.8125rem; color:var(--muted);
+    padding:0 22px; white-space:nowrap;
+    display:flex; align-items:center; gap:22px;
+  }
+  .ticker li::after{ content:""; width:4px; height:4px; border-radius:50%; background:var(--violet); }
+  @media (prefers-reduced-motion: no-preference){
+    .ticker ul{ animation:slide 34s linear infinite; }
+    .ticker:hover ul{ animation-play-state:paused; }
+    @keyframes slide{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  }
+
+  /* ================= stats ================= */
+
+  .stats{ padding:64px 0 8px; }
+  .stats ul{
+    list-style:none; margin:0; padding:0;
+    display:grid; gap:30px 24px;
+    grid-template-columns:repeat(auto-fit, minmax(150px,1fr));
+  }
+  .stats b{
+    display:block; font-family:var(--display); font-weight:700;
+    font-size:clamp(2.1rem, 5vw, 3rem); line-height:1; letter-spacing:-.035em;
+    background:linear-gradient(120deg, var(--mint), var(--violet));
+    -webkit-background-clip:text; background-clip:text;
+    color:transparent;
+    margin-bottom:8px;
+  }
+  .stats span{ font-size:.875rem; color:var(--muted); }
+
+  /* ================= sections ================= */
+
+  section{ scroll-margin-top:calc(var(--bar) + 10px); }
+  .band{ padding:78px 0; }
+
+  .head{ margin-bottom:38px; max-width:52ch; }
+  .eyebrow{
+    font-family:var(--mono); font-size:.75rem; color:var(--violet);
+    margin:0 0 12px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::after{ content:""; height:1px; flex:1; background:var(--line); }
+  .head h2{
+    font-family:var(--display); font-weight:700;
+    font-size:clamp(1.7rem, 4vw, 2.4rem);
+    line-height:1.12; letter-spacing:-.03em;
+    margin:0;
+  }
+
+  .about-grid{ display:grid; gap:38px; }
+  @media (min-width:900px){ .about-grid{ grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr); gap:64px; } }
+  .about-grid p{ color:var(--muted); margin:0 0 18px; }
+  .about-grid p:last-child{ margin-bottom:0; }
+
+  .certs{ list-style:none; margin:0; padding:0; }
+  .certs li{
+    display:flex; gap:12px; align-items:flex-start;
+    padding:14px 0; font-size:.9375rem;
+  }
+  .certs li + li{ border-top:1px solid var(--line); }
+  .certs li::before{
+    content:"\2713"; color:var(--mint); font-size:.8125rem;
+    line-height:1.7; flex:none;
+  }
+  .certs em{ display:block; font-style:normal; color:var(--muted); font-size:.8125rem; }
+
+  /* ================= timeline ================= */
+
+  .timeline{ list-style:none; margin:0; padding:0 0 0 30px; position:relative; }
+  .timeline::before{
+    content:""; position:absolute; left:5px; top:10px; bottom:14px; width:1px;
+    background:linear-gradient(180deg, var(--mint), var(--violet) 55%, transparent);
+  }
+  .entry{ position:relative; padding-bottom:44px; }
+  .entry:last-child{ padding-bottom:0; }
+  .entry::before{
+    content:""; position:absolute; left:-30px; top:9px;
+    width:11px; height:11px; border-radius:50%;
+    background:var(--void); border:2px solid var(--mint);
+  }
+  .entry:nth-child(n+3)::before{ border-color:var(--violet); }
+
+  .entry-head{ display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 16px; }
+  .entry h3{
+    font-family:var(--display); font-weight:600;
+    font-size:1.1875rem; letter-spacing:-.02em; margin:0; line-height:1.3;
+  }
+  .when{
+    margin-left:auto; white-space:nowrap;
+    font-family:var(--mono); font-size:.75rem; color:var(--muted);
+  }
+  .where{ margin:4px 0 14px; font-size:.9375rem; color:var(--mint); font-weight:500; }
+  .entry ul.points{ margin:0 0 16px; padding-left:18px; color:var(--muted); max-width:68ch; }
+  .entry ul.points li{ margin-bottom:7px; font-size:.9375rem; }
+  .entry ul.points li::marker{ color:var(--violet); }
+
+  .tags{ display:flex; flex-wrap:wrap; gap:7px; list-style:none; margin:0; padding:0; }
+  .tags li{
+    font-family:var(--mono); font-size:.6875rem; color:#b3b3d4;
+    border:1px solid var(--line); background:var(--panel);
+    padding:5px 10px; border-radius:6px;
+  }
+
+  /* ================= skills ================= */
+
+  .skills{
+    display:grid; gap:1px; margin:0;
+    grid-template-columns:repeat(auto-fit, minmax(255px,1fr));
+    background:var(--line);
+    border:1px solid var(--line); border-radius:14px; overflow:hidden;
+  }
+  .skills > div{ background:var(--void); padding:26px 24px; }
+  .skills dt{
+    font-family:var(--display); font-weight:600; font-size:.9375rem;
+    margin-bottom:14px; display:flex; align-items:center; gap:9px;
+  }
+  .skills dt::before{
+    content:""; width:6px; height:6px; border-radius:2px;
+    background:var(--mint); transform:rotate(45deg);
+  }
+  .skills dd{ margin:0; display:flex; flex-wrap:wrap; gap:7px; }
+  .skills dd span{
+    font-family:var(--mono); font-size:.6875rem; color:var(--muted);
+    border:1px solid var(--line); padding:5px 10px; border-radius:6px;
+  }
+
+  /* ================= contact ================= */
+
+  .contact{ position:relative; padding:96px 0 40px; overflow:hidden; text-align:center; }
+  .contact::before{
+    content:""; position:absolute; left:50%; top:22%;
+    width:640px; height:440px; transform:translateX(-50%);
+    background:radial-gradient(ellipse, rgba(53,224,161,.16), transparent 66%);
+    pointer-events:none;
+  }
+  .contact .wrap{ position:relative; z-index:1; }
+  .contact h2{
+    font-family:var(--display); font-weight:700;
+    font-size:clamp(1.9rem, 5vw, 3rem); letter-spacing:-.035em;
+    margin:0 0 16px; line-height:1.08;
+  }
+  .contact p{ color:var(--muted); max-width:46ch; margin:0 auto 34px; }
+  .mailto{
+    display:inline-block;
+    font-family:var(--display); font-weight:700;
+    font-size:clamp(1.15rem, 3.4vw, 1.9rem); letter-spacing:-.025em;
+    text-decoration:none; word-break:break-word;
+    border-bottom:2px solid var(--mint); padding-bottom:6px; margin-bottom:32px;
+    transition:color .2s ease;
+  }
+  .mailto:hover{ color:var(--mint); }
+  .elsewhere{ display:flex; flex-wrap:wrap; gap:11px; justify-content:center; }
+  .elsewhere a{
+    font-family:var(--mono); font-size:.75rem; text-decoration:none; color:var(--muted);
+    border:1px solid var(--line); border-radius:999px; padding:11px 18px;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .elsewhere a:hover{ border-color:var(--mint); color:var(--text); }
+
+  footer{
+    margin-top:72px; padding-top:22px;
+    border-top:1px solid var(--line);
+    font-family:var(--mono); font-size:.6875rem; color:#63638c;
+    display:flex; flex-wrap:wrap; gap:10px 24px; justify-content:center;
+  }
+
+  @media (max-width:899px){
+    .topnav{ display:none; }
+    .lang{ margin-left:auto; }
+    .when{ margin-left:0; }
+    .hero{ padding-top:calc(var(--bar) + 46px); }
+    .glow{ width:520px; height:520px; }
+  }
+
+  @media print{
+    .topbar,.runner-foot,.ticker,.glow,.contact::before{ display:none; }
+    body{ background:#fff; color:#000; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="mark" href="#top">Ameni Mhamdi<i>.</i></a>
+    <nav class="topnav" aria-label="Sections">
+      <ul>
+        <li><a href="#about" data-en="About" data-fr="À propos">About</a></li>
+        <li><a href="#experience" data-en="Experience" data-fr="Expérience">Experience</a></li>
+        <li><a href="#skills" data-en="Skills" data-fr="Compétences">Skills</a></li>
+        <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+    </div>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<section class="hero" id="top">
+  <div class="glow" id="glow" aria-hidden="true"></div>
+  <div class="wrap">
+
+    <div>
+      <p class="status" data-en="Let's automate it together" data-fr="Automatisons ensemble">Let's automate it together</p>
+      <h1><span>Ameni</span><span>Mhamdi</span></h1>
+      <p class="kicker" data-en="qa automation engineer · istqb v4.0 &amp; a4q certified" data-fr="ingénieure qa automatisation · certifiée istqb v4.0 &amp; a4q">qa automation engineer · istqb v4.0 &amp; a4q certified</p>
+      <p class="pitch" data-en="I build test suites that catch the bug before your users do — from the browser, down through the API, all the way into the pipeline." data-fr="Je construis des suites de tests qui attrapent le bug avant vos utilisateurs — du navigateur jusqu'à l'API, et jusque dans le pipeline.">I build test suites that catch the bug before your users do — from the browser, down through the API, all the way into the pipeline.</p>
+      <div class="cta-row">
+        <a class="btn btn-solid" href="#contact" data-en="Get in touch" data-fr="Me contacter">Get in touch</a>
+        <a class="btn btn-ghost" href="cv-ameni-mhamdi.pdf" download data-en="Download CV" data-fr="Télécharger le CV">Download CV</a>
+      </div>
+    </div>
+
+    <div class="runner">
+      <div class="runner-head">
+        <i></i><i></i><i></i>
+        <b>ameni.spec.ts</b>
+      </div>
+      <div class="runner-body">
+        <ol id="runner-list"></ol>
+        <p class="runner-sum" id="runner-sum"></p>
+      </div>
+      <div class="runner-foot">
+        <div class="track"><div id="track-fill"></div></div>
+        <button class="run-btn" id="run-btn" type="button">run tests</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <ul id="ticker"></ul>
+</div>
+
+<section class="stats">
+  <div class="wrap">
+    <ul>
+      <li><b data-count="3" data-plus="+">0</b><span data-en="years in test automation" data-fr="ans en automatisation des tests">years in test automation</span></li>
+      <li><b data-count="1000">0</b><span data-en="sanity test cases covered" data-fr="cas de tests Sanity couverts">sanity test cases covered</span></li>
+      <li><b data-count="4">0</b><span data-en="teams and products tested" data-fr="équipes et produits testés">teams and products tested</span></li>
+      <li><b data-count="5">0</b><span data-en="professional certifications" data-fr="certifications professionnelles">professional certifications</span></li>
+    </ul>
+  </div>
+</section>
+
+<main>
+
+  <section class="band" id="about" tabindex="-1">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow" data-en="about" data-fr="à propos">about</p>
+        <h2 data-en="Quality is not a phase at the end. It's a decision made every sprint." data-fr="La qualité n'est pas une étape finale. C'est une décision prise à chaque sprint.">Quality is not a phase at the end. It's a decision made every sprint.</h2>
+      </div>
+
+      <div class="about-grid">
+        <div>
+          <p data-en="I design and maintain automated test suites with Playwright, Selenium and Cucumber, in TypeScript and Java. The work rarely starts with code: it starts with understanding the business flow, deciding what is actually worth automating, then writing BDD scenarios the product team can read without a translator." data-fr="Je conçois et maintiens des suites de tests automatisés avec Playwright, Selenium et Cucumber, en TypeScript et en Java. Le travail commence rarement par du code : il commence par comprendre le parcours métier, décider ce qui mérite vraiment d'être automatisé, puis écrire des scénarios BDD que l'équipe produit peut relire sans traducteur.">I design and maintain automated test suites with Playwright, Selenium and Cucumber, in TypeScript and Java. The work rarely starts with code: it starts with understanding the business flow, deciding what is actually worth automating, then writing BDD scenarios the product team can read without a translator.</p>
+          <p data-en="I have worked on insurance platforms, Smart Metering systems and Android interfaces — always in Agile Scrum, always sitting close to the developers. Pipelines, defect triage, static analysis, message queues: the visible output is a test report, but the real output is everything that never reached production." data-fr="J'ai travaillé sur des plateformes d'assurance, des systèmes de Smart Metering et des interfaces Android — toujours en Agile Scrum, toujours au contact des développeurs. Pipelines, suivi des anomalies, analyse statique, files de messages : le livrable visible est un rapport de test, le vrai livrable est tout ce qui n'est jamais arrivé en production.">I have worked on insurance platforms, Smart Metering systems and Android interfaces — always in Agile Scrum, always sitting close to the developers. Pipelines, defect triage, static analysis, message queues: the visible output is a test report, but the real output is everything that never reached production.</p>
+          <p data-en="Based in Ariana, Tunisia. I work in Arabic, French and English." data-fr="Basée à l'Ariana, en Tunisie. Je travaille en arabe, en français et en anglais.">Based in Ariana, Tunisia. I work in Arabic, French and English.</p>
+        </div>
+
+        <ul class="certs">
+          <li><span>ISTQB® Certified Tester Foundation Level<em>CTFL — Syllabus v4.0</em></span></li>
+          <li><span>A4Q Certified Selenium Tester Foundation<em>A4Q CST</em></span></li>
+          <li><span data-en="Object Oriented Programming in Java" data-fr="Programmation orientée objet en Java">Object Oriented Programming in Java</span></li>
+          <li><span>Git Fundamentals</span></li>
+          <li><span>Python Essentials 1 — Cisco</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="experience" tabindex="-1">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow" data-en="experience" data-fr="expérience">experience</p>
+        <h2 data-en="Three years of shipping tests that hold up" data-fr="Trois ans à livrer des tests qui tiennent">Three years of shipping tests that hold up</h2>
+      </div>
+
+      <ul class="timeline">
+
+        <li class="entry">
+          <div class="entry-head">
+            <h3 data-en="Test Automation Engineer" data-fr="Ingénieure en automatisation des tests">Test Automation Engineer</h3>
+            <span class="when" data-en="Sept 2025 — present" data-fr="Sept. 2025 — aujourd'hui">Sept 2025 — present</span>
+          </div>
+          <p class="where">RGI Group · Tunis</p>
+          <ul class="points">
+            <li data-en="Frontend (Kelia UI) and backend / API (Karma project) automated tests using Playwright, TypeScript and Cucumber." data-fr="Tests automatisés frontend (IHM Kelia) et backend / API (projet Karma) en Playwright, TypeScript et Cucumber.">Frontend (Kelia UI) and backend / API (Karma project) automated tests using Playwright, TypeScript and Cucumber.</li>
+            <li data-en="BDD scenarios covering the critical functional paths of the applications." data-fr="Scénarios BDD couvrant les parcours fonctionnels critiques des applications.">BDD scenarios covering the critical functional paths of the applications.</li>
+            <li data-en="REST API testing and data-flow validation with Postman." data-fr="Tests des API REST et validation des flux de données via Postman.">REST API testing and data-flow validation with Postman.</li>
+            <li data-en="Jenkins CI/CD pipelines running and monitoring the automated suites." data-fr="Pipelines CI/CD Jenkins pour l'exécution et la surveillance des suites automatisées.">Jenkins CI/CD pipelines running and monitoring the automated suites.</li>
+            <li data-en="Defect analysis and follow-up with the development team, in Agile Scrum." data-fr="Analyse et suivi des anomalies avec l'équipe de développement, en Agile Scrum.">Defect analysis and follow-up with the development team, in Agile Scrum.</li>
+          </ul>
+          <ul class="tags"><li>Playwright</li><li>TypeScript</li><li>Cucumber</li><li>Postman</li><li>Jenkins</li><li>Jira</li><li>Git</li></ul>
+        </li>
+
+        <li class="entry">
+          <div class="entry-head">
+            <h3 data-en="Test Automation Engineer" data-fr="Ingénieure en automatisation des tests">Test Automation Engineer</h3>
+            <span class="when" data-en="Aug 2024 — Jul 2025" data-fr="Août 2024 — juil. 2025">Aug 2024 — Jul 2025</span>
+          </div>
+          <p class="where">Sagemcom Software &amp; Technologies · La Goulette</p>
+          <ul class="points">
+            <li data-en="Built and maintained Selenium / Java automated suites for Smart Metering applications." data-fr="Conception et maintenance des suites de tests automatisés Selenium / Java pour les applications Smart Metering.">Built and maintained Selenium / Java automated suites for Smart Metering applications.</li>
+            <li data-en="Extended sanity test coverage up to 1,000 test cases." data-fr="Extension de la couverture des tests Sanity jusqu'à 1 000 cas de tests.">Extended sanity test coverage up to 1,000 test cases.</li>
+            <li data-en="Automated message retrieval from Kafka and ActiveMQ to verify data-flow reliability." data-fr="Automatisation de la récupération des messages depuis Kafka et ActiveMQ pour fiabiliser les flux de données.">Automated message retrieval from Kafka and ActiveMQ to verify data-flow reliability.</li>
+            <li data-en="Database access and SQL queries embedded in the tests; VM handling through Linux commands." data-fr="Accès bases de données et requêtes SQL intégrés aux tests ; gestion de machines virtuelles sous Linux.">Database access and SQL queries embedded in the tests; VM handling through Linux commands.</li>
+            <li data-en="Reviewed the team's scripts and tracked code quality with SonarQube." data-fr="Revue des scripts de l'équipe et suivi de la qualité du code avec SonarQube.">Reviewed the team's scripts and tracked code quality with SonarQube.</li>
+            <li data-en="Regression testing on every release, with result reports for the validation team." data-fr="Tests de non-régression à chaque livraison, avec rapports de résultats pour l'équipe de validation.">Regression testing on every release, with result reports for the validation team.</li>
+          </ul>
+          <ul class="tags"><li>Selenium</li><li>Java</li><li>Serenity BDD</li><li>Cucumber</li><li>Kafka</li><li>ActiveMQ</li><li>Elasticsearch</li><li>Kibana</li><li>SonarQube</li><li>Xray</li></ul>
+        </li>
+
+        <li class="entry">
+          <div class="entry-head">
+            <h3 data-en="Test Automation Engineer — Freelance" data-fr="Ingénieure en automatisation des tests — Freelance">Test Automation Engineer — Freelance</h3>
+            <span class="when" data-en="Sept 2023 — Jul 2024" data-fr="Sept. 2023 — juil. 2024">Sept 2023 — Jul 2024</span>
+          </div>
+          <p class="where" data-en="Independent · Ariana" data-fr="Indépendante · Ariana">Independent · Ariana</p>
+          <ul class="points">
+            <li data-en="Co-developed web test automation with Selenium WebDriver and TestNG." data-fr="Co-développement de solutions de tests automatisés web avec Selenium WebDriver et TestNG.">Co-developed web test automation with Selenium WebDriver and TestNG.</li>
+            <li data-en="Modular scripts focused on critical business flows and built to stay maintainable." data-fr="Scripts modulaires centrés sur les flux métiers critiques, pensés pour rester maintenables.">Modular scripts focused on critical business flows and built to stay maintainable.</li>
+            <li data-en="Test-case management in TestLink and traceability through Xray as client requirements evolved." data-fr="Gestion des cas de test dans TestLink et traçabilité via Xray, au fil des exigences clients.">Test-case management in TestLink and traceability through Xray as client requirements evolved.</li>
+            <li data-en="Automated regression campaigns and short, readable reports for stakeholders." data-fr="Campagnes de régression automatisées et rapports synthétiques pour les parties prenantes.">Automated regression campaigns and short, readable reports for stakeholders.</li>
+          </ul>
+          <ul class="tags"><li>Selenium WebDriver</li><li>TestNG</li><li>Java</li><li>Cucumber</li><li>TestLink</li><li>Xray</li></ul>
+        </li>
+
+        <li class="entry">
+          <div class="entry-head">
+            <h3 data-en="Final-year internship — Custom TV launcher" data-fr="Stage de fin d'études — Lanceur TV personnalisé">Final-year internship — Custom TV launcher</h3>
+            <span class="when" data-en="Feb — Jul 2023" data-fr="Fév. — juil. 2023">Feb — Jul 2023</span>
+          </div>
+          <p class="where">Sagemcom Software &amp; Technologies · Megrine</p>
+          <ul class="points">
+            <li data-en="Designed the UI/UX of an Android launcher for the Virtual Storytelling Box, on an MVVM architecture." data-fr="Conception de l'interface UI/UX d'un lanceur Android pour la Virtual Storytelling Box, en architecture MVVM.">Designed the UI/UX of an Android launcher for the Virtual Storytelling Box, on an MVVM architecture.</li>
+            <li data-en="Built dynamic interfaces in Jetpack Compose, adapted to different user profiles." data-fr="Interfaces dynamiques en Jetpack Compose, adaptées à différents profils utilisateurs.">Built dynamic interfaces in Jetpack Compose, adapted to different user profiles.</li>
+            <li data-en="Mockups in Figma, interactive prototypes, then personalised recommendations on the home screen." data-fr="Maquettes Figma, prototypes interactifs, puis recommandations personnalisées sur l'écran d'accueil.">Mockups in Figma, interactive prototypes, then personalised recommendations on the home screen.</li>
+            <li data-en="REST API testing through Postman and SonarQube added to the pipeline." data-fr="Tests des API REST via Postman et intégration de SonarQube au pipeline.">REST API testing through Postman and SonarQube added to the pipeline.</li>
+          </ul>
+          <ul class="tags"><li>Kotlin</li><li>Jetpack Compose</li><li>MVVM</li><li>Figma</li><li>Postman</li><li>GitLab</li></ul>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" id="skills" tabindex="-1">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow" data-en="skills" data-fr="compétences">skills</p>
+        <h2 data-en="The toolbox" data-fr="La boîte à outils">The toolbox</h2>
+      </div>
+
+      <dl class="skills">
+        <div>
+          <dt data-en="Test automation" data-fr="Automatisation">Test automation</dt>
+          <dd><span>Playwright</span><span>Selenium</span><span>Cucumber</span><span>Serenity BDD</span><span>TestNG</span></dd>
+        </div>
+        <div>
+          <dt data-en="Languages" data-fr="Langages">Languages</dt>
+          <dd><span>Java</span><span>TypeScript</span><span>JavaScript</span><span>Python</span><span>Kotlin</span></dd>
+        </div>
+        <div>
+          <dt data-en="APIs &amp; web services" data-fr="API &amp; services web">APIs &amp; web services</dt>
+          <dd><span>REST</span><span>Postman</span><span>Swagger</span><span>ReadyAPI</span><span>JSON</span></dd>
+        </div>
+        <div>
+          <dt data-en="CI/CD &amp; source control" data-fr="CI/CD &amp; gestion du code">CI/CD &amp; source control</dt>
+          <dd><span>Jenkins</span><span>Azure DevOps</span><span>Git</span><span>GitHub</span><span>GitLab</span><span>SonarQube</span></dd>
+        </div>
+        <div>
+          <dt data-en="Test &amp; defect management" data-fr="Gestion des tests et des bugs">Test &amp; defect management</dt>
+          <dd><span>Jira</span><span>Xray</span><span>TestLink</span><span>Squash TM</span><span>Confluence</span></dd>
+        </div>
+        <div>
+          <dt data-en="Data &amp; monitoring" data-fr="Données &amp; monitoring">Data &amp; monitoring</dt>
+          <dd><span>SQL</span><span>MySQL</span><span>SQL Server</span><span>Firebase</span><span>Kibana</span><span>Elasticsearch</span><span>Kafka</span><span>ActiveMQ</span></dd>
+        </div>
+        <div>
+          <dt data-en="Development" data-fr="Développement">Development</dt>
+          <dd><span>Angular</span><span>Spring Boot</span><span>JEE</span><span>Hibernate</span><span>Flutter</span><span>Jetpack Compose</span></dd>
+        </div>
+        <div>
+          <dt data-en="Ways of working" data-fr="Méthodes de travail">Ways of working</dt>
+          <dd><span>Agile Scrum</span><span>BDD</span><span>UML</span><span data-en="Regression testing" data-fr="Non-régression">Regression testing</span></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<section class="contact" id="contact" tabindex="-1">
+  <div class="wrap">
+    <h2 data-en="Let's talk about your test coverage" data-fr="Parlons de votre couverture de tests">Let's talk about your test coverage</h2>
+    <p data-en="Available for QA and test automation roles, on site in Tunis or fully remote. Write to me — I answer." data-fr="Disponible pour des missions QA et automatisation des tests, sur site à Tunis ou en télétravail. Écris-moi, je réponds.">Available for QA and test automation roles, on site in Tunis or fully remote. Write to me — I answer.</p>
+    <a class="mailto" href="mailto:Amenimhamdy@yahoo.com">Amenimhamdy@yahoo.com</a>
+    <div class="elsewhere">
+      <a href="tel:+21652120300">+216 52 120 300</a>
+      <a href="https://www.linkedin.com/in/mhamdi-ameni/" rel="me noopener" target="_blank">LinkedIn</a>
+      <a href="https://github.com/AmeniMhamdy" rel="me noopener" target="_blank">GitHub</a>
+      <a href="cv-ameni-mhamdi.pdf" download data-en="Download CV" data-fr="Télécharger le CV">Download CV</a>
+    </div>
+
+    <footer>
+      <span>Ameni Mhamdi</span>
+      <span data-en="Ariana, Tunisia" data-fr="Ariana, Tunisie">Ariana, Tunisia</span>
+      <span data-en="Arabic · French · English" data-fr="Arabe · Français · Anglais">Arabic · French · English</span>
+    </footer>
+  </div>
+</section>
+
+<script>
+(function () {
+
+  var lang = 'en';
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------------- content that JS renders ---------------- */
+
+  var TESTS = {
+    en: [
+      ['ui automation', 'Playwright + TypeScript flows', 412],
+      ['ui automation', 'Selenium + Java suites', 388],
+      ['api testing', 'REST endpoints via Postman', 214],
+      ['bdd', 'Given / When / Then scenarios', 97],
+      ['ci/cd', 'suites running on Jenkins', 305],
+      ['reporting', 'defect triage in Jira & Xray', 156]
+    ],
+    fr: [
+      ['automatisation ui', 'parcours Playwright + TypeScript', 412],
+      ['automatisation ui', 'suites Selenium + Java', 388],
+      ['tests api', 'endpoints REST via Postman', 214],
+      ['bdd', 'scénarios Given / When / Then', 97],
+      ['ci/cd', 'suites exécutées sur Jenkins', 305],
+      ['reporting', 'suivi des anomalies dans Jira & Xray', 156]
+    ]
+  };
+
+  var SUM = {
+    en: function (n, ms) { return [n + ' passed', ' · 0 failed · ' + ms + 's · ready to ship']; },
+    fr: function (n, ms) { return [n + ' réussis', ' · 0 échec · ' + ms + 's · prêt à livrer']; }
+  };
+
+  var TOOLS = ['Playwright','Selenium','Cucumber','TypeScript','Java','Postman','Jenkins','Jira','Xray','Kafka','SonarQube','Serenity BDD','Azure DevOps','Elasticsearch','Git','TestNG'];
+
+  /* ---------------- ticker ---------------- */
+
+  var ticker = document.getElementById('ticker');
+  var row = TOOLS.map(function (t) { return '<li>' + t + '</li>'; }).join('');
+  ticker.innerHTML = row + row;
+
+  /* ---------------- test runner ---------------- */
+
+  var list = document.getElementById('runner-list');
+  var sum = document.getElementById('runner-sum');
+  var fill = document.getElementById('track-fill');
+  var btn = document.getElementById('run-btn');
+  var timers = [];
+  var running = false;
+
+  function line(t, done) {
+    var li = document.createElement('li');
+    li.innerHTML =
+      '<span class="' + (done ? 'tick' : 'spin') + '">' + (done ? '\u2713' : '\u25CF') + '</span>' +
+      '<span><span style="color:#6f6f9c">' + t[0] + ' \u203A </span>' + t[1] + '</span>' +
+      '<span class="ms">' + t[2] + 'ms</span>';
+    return li;
+  }
+
+  function finish(tests) {
+    var total = tests.reduce(function (a, t) { return a + t[2]; }, 0);
+    var parts = SUM[lang](tests.length, (total / 1000).toFixed(2));
+    sum.innerHTML = '<b>' + parts[0] + '</b>' + parts[1];
+    fill.style.width = '100%';
+    btn.textContent = lang === 'fr' ? 'relancer' : 'run again';
+    btn.disabled = false;
+    running = false;
+  }
+
+  function render(animate) {
+    timers.forEach(clearTimeout);
+    timers = [];
+    list.innerHTML = '';
+    sum.innerHTML = '';
+    fill.style.width = '0%';
+
+    var tests = TESTS[lang];
+
+    if (!animate || reduced) {
+      tests.forEach(function (t) { list.appendChild(line(t, true)); });
+      finish(tests);
+      return;
+    }
+
+    running = true;
+    btn.disabled = true;
+    btn.textContent = lang === 'fr' ? 'exécution…' : 'running…';
+
+    var delay = 260;
+    tests.forEach(function (t, i) {
+      timers.push(setTimeout(function () {
+        list.appendChild(line(t, true));
+        fill.style.width = Math.round(((i + 1) / tests.length) * 100) + '%';
+      }, delay * (i + 1)));
+    });
+
+    timers.push(setTimeout(function () { finish(tests); }, delay * (tests.length + 1)));
+  }
+
+  btn.addEventListener('click', function () { if (!running) render(true); });
+
+  /* ---------------- language switch ---------------- */
+
+  var META = {
+    en: {
+      title: 'Ameni Mhamdi — QA Automation Engineer',
+      desc: 'QA automation engineer, ISTQB v4.0 and A4Q Selenium certified. Playwright, Selenium, Cucumber, REST API testing, CI/CD.'
+    },
+    fr: {
+      title: 'Ameni Mhamdi — Ingénieure QA Automatisation',
+      desc: "Ingénieure en automatisation des tests, certifiée ISTQB v4.0 et A4Q Selenium. Playwright, Selenium, Cucumber, tests d'API REST, CI/CD."
+    }
+  };
+
+  var nodes = document.querySelectorAll('[data-en]');
+  var langBtns = document.querySelectorAll('.lang button');
+
+  function setLang(next) {
+    lang = next;
+    document.documentElement.lang = next;
+
+    nodes.forEach(function (el) {
+      var value = el.getAttribute('data-' + next);
+      if (value !== null) el.textContent = value;
+    });
+
+    document.title = META[next].title;
+    var desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute('content', META[next].desc);
+
+    langBtns.forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.lang === next));
+    });
+
+    paintStats(true);
+    render(false);
+  }
+
+  langBtns.forEach(function (b) {
+    b.addEventListener('click', function () { if (b.dataset.lang !== lang) setLang(b.dataset.lang); });
+  });
+
+  /* ---------------- counting stats ---------------- */
+
+  var counters = Array.prototype.slice.call(document.querySelectorAll('[data-count]'));
+
+  function fmt(n) {
+    return new Intl.NumberFormat(lang === 'fr' ? 'fr-FR' : 'en-US').format(n);
+  }
+
+  function paintStats(instant) {
+    counters.forEach(function (el) {
+      var target = parseInt(el.dataset.count, 10);
+      var plus = el.dataset.plus || '';
+
+      if (instant || reduced) { el.textContent = fmt(target) + plus; return; }
+
+      var start = performance.now();
+      var dur = 1100;
+      (function step(now) {
+        var p = Math.min((now - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(Math.round(target * eased)) + (p === 1 ? plus : '');
+        if (p < 1) requestAnimationFrame(step);
+      })(start);
+    });
+  }
+
+  if ('IntersectionObserver' in window && counters.length) {
+    var statObs = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { paintStats(false); obs.disconnect(); }
+      });
+    }, { threshold: .4 });
+    statObs.observe(counters[0].closest('.stats'));
+  } else {
+    paintStats(true);
+  }
+
+  /* ---------------- nav + scroll progress ---------------- */
+
+  var links = Array.prototype.slice.call(document.querySelectorAll('.topnav a'));
+  var sections = links
+    .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+    .filter(Boolean);
+
+  if ('IntersectionObserver' in window && sections.length) {
+    var visible = new Set();
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) visible.add(e.target.id); else visible.delete(e.target.id);
+      });
+      var current = sections.find(function (s) { return visible.has(s.id); });
+      links.forEach(function (a) {
+        if (current && a.getAttribute('href') === '#' + current.id) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
+      });
+    }, { rootMargin: '-25% 0px -65% 0px' });
+    sections.forEach(function (s) { io.observe(s); });
+  }
+
+  var bar = document.getElementById('progress');
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      ticking = false;
+    });
+  }, { passive: true });
+
+  /* ---------------- pointer glow in the hero ---------------- */
+
+  var hero = document.querySelector('.hero');
+  var glow = document.getElementById('glow');
+  if (hero && glow && !reduced && window.matchMedia('(pointer:fine)').matches) {
+    hero.addEventListener('pointermove', function (e) {
+      var r = hero.getBoundingClientRect();
+      glow.style.setProperty('--gx', ((e.clientX - r.left) / r.width) * 100 + '%');
+      glow.style.setProperty('--gy', ((e.clientY - r.top) / r.height) * 100 + '%');
+    });
+  }
+
+  /* ---------------- start ---------------- */
+
+  render(true);
+
+})();
+</script>
+
+</body>
+</html>
