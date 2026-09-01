@@ -376,6 +376,48 @@
     border:1px solid var(--line); padding:5px 10px; border-radius:6px;
   }
 
+  /* ================= recommendations ================= */
+
+  .recos{
+    display:grid; gap:1px; margin:0; padding:0; list-style:none;
+    grid-template-columns:repeat(auto-fit, minmax(310px,1fr));
+    background:var(--line);
+    border:1px solid var(--line); border-radius:14px; overflow:hidden;
+  }
+  .recos > li{
+    background:var(--void); padding:30px 26px;
+    display:flex; flex-direction:column;
+  }
+  .recos blockquote{ margin:0; color:#c9c9e4; font-size:.9375rem; line-height:1.72; }
+  .recos blockquote::before{
+    content:"\201C";
+    display:block; font-family:var(--display); font-weight:800;
+    font-size:2.75rem; line-height:.55; color:var(--violet);
+    margin-bottom:18px;
+  }
+  .recos blockquote p{ margin:0 0 13px; max-width:60ch; }
+  .recos blockquote p:last-child{ margin-bottom:0; }
+
+  .reco-by{
+    margin-top:auto; padding-top:20px;
+    border-top:1px solid var(--line);
+  }
+  .reco-by strong{
+    display:block; font-family:var(--display); font-weight:600;
+    font-size:.9375rem; letter-spacing:-.015em;
+  }
+  .reco-by span{ display:block; font-size:.8125rem; color:var(--muted); margin-top:4px; }
+  .reco-by em{
+    display:block; font-style:normal;
+    font-family:var(--mono); font-size:.6875rem; color:var(--mint);
+    margin-top:10px;
+  }
+  .recos-source{
+    margin:20px 0 0; font-family:var(--mono); font-size:.75rem; color:var(--muted);
+  }
+  .recos-source a{ color:var(--muted); text-decoration:none; border-bottom:1px solid var(--line); }
+  .recos-source a:hover{ color:var(--mint); border-color:var(--mint); }
+
   /* ================= contact ================= */
 
   .contact{ position:relative; padding:96px 0 40px; overflow:hidden; text-align:center; }
@@ -440,6 +482,7 @@
         <li><a href="#about" data-en="About" data-fr="À propos">About</a></li>
         <li><a href="#experience" data-en="Experience" data-fr="Expérience">Experience</a></li>
         <li><a href="#skills" data-en="Skills" data-fr="Compétences">Skills</a></li>
+        <li><a href="#recommendations" data-en="Recommendations" data-fr="Recommandations">Recommendations</a></li>
         <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
       </ul>
     </nav>
@@ -643,6 +686,49 @@
           <dd><span>Agile Scrum</span><span>BDD</span><span>UML</span><span data-en="Regression testing" data-fr="Non-régression">Regression testing</span></dd>
         </div>
       </dl>
+    </div>
+  </section>
+
+  <section class="band" id="recommendations" tabindex="-1">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow" data-en="recommendations" data-fr="recommandations">recommendations</p>
+        <h2 data-en="What the people I worked with say" data-fr="Ce que disent les personnes avec qui j'ai travaillé">What the people I worked with say</h2>
+      </div>
+
+      <ul class="recos">
+
+        <li>
+          <blockquote>
+            <p>I have had the opportunity to learn about Ameni Mhamdi's work as a QA Engineer, and I am impressed by her strong commitment to quality and continuous improvement.</p>
+            <p>Ameni demonstrates a solid understanding of testing methodologies, including both manual and automated testing, along with a sharp attention to detail that is essential for delivering reliable and high-performing products. Her structured approach and analytical mindset allow her to effectively identify issues and contribute to improving overall product quality.</p>
+            <p>In addition to her technical skills, Ameni is recognized for her professionalism, clear communication, and collaborative spirit.</p>
+            <p>I would confidently recommend Ameni Mhamdi to any organization seeking a dedicated and capable QA professional.</p>
+          </blockquote>
+          <div class="reco-by">
+            <strong>Khaled Aouni</strong>
+            <span>Country Manager &amp; International Sales Leader</span>
+            <em data-en="worked with Ameni in a different team · March 2026" data-fr="a travaillé avec Ameni dans une autre équipe · mars 2026">worked with Ameni in a different team · March 2026</em>
+          </div>
+        </li>
+
+        <li>
+          <blockquote lang="fr">
+            <p>J'ai eu le plaisir d'être le manager de Ameni au sein de l'activité validation Serveur pendant une année. Tout au long de cette période, Ameni s'est illustrée par son sérieux, son professionnalisme et sa capacité à s'investir pleinement dans les missions qui lui étaient confiées.</p>
+            <p>Ameni a su démontrer de solides compétences techniques ainsi qu'une grande autonomie dans la gestion de ses projets. Elle a également fait preuve d'un excellent esprit d'équipe, toujours prête à soutenir ses collègues et à partager ses connaissances. Son sens de l'initiative et sa force de proposition ont permis d'apporter des améliorations concrètes au sein de notre organisation.</p>
+            <p>En tant que manager, j'ai particulièrement apprécié sa fiabilité, sa capacité d'adaptation et son engagement pour atteindre les objectifs fixés. Je suis convaincue que Ameni saura s'intégrer rapidement et apporter une réelle valeur ajoutée à son futur environnement professionnel.</p>
+            <p>Je recommande donc chaleureusement Ameni et lui souhaite beaucoup de succès dans la suite de sa carrière.</p>
+          </blockquote>
+          <div class="reco-by">
+            <strong>Jihen Haouel</strong>
+            <span>Smart Metering server testing leader · PMP, ISTQB Advanced, PSM I</span>
+            <em data-en="Ameni's direct manager · June 2025" data-fr="responsable direct d'Ameni · juin 2025">Ameni's direct manager · June 2025</em>
+          </div>
+        </li>
+
+      </ul>
+
+      <p class="recos-source" data-en="Both recommendations are published on my LinkedIn profile." data-fr="Les deux recommandations sont publiées sur mon profil LinkedIn.">Both recommendations are published on my LinkedIn profile.</p>
     </div>
   </section>
 
