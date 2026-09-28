@@ -4,7 +4,7 @@
   Bilingual EN / FR, single file, no build step.
 
   To finish:
-    - "cv-ameni-mhamdi.pdf" -> put your PDF next to this file
+    - "cv-ameni-mhamdi.pdf" (French CV) and "cv-ameni-mhamdi-en.pdf" (English CV) -> next to this file
     - "preview.png" (1200x627) -> put it next to this file for the LinkedIn preview
 -->
 <html lang="en">
@@ -528,7 +528,7 @@
       <p class="pitch" data-en="I build test suites that catch the bug before your users do — from the browser, down through the API, all the way into the pipeline." data-fr="Je construis des suites de tests qui attrapent le bug avant vos utilisateurs — du navigateur jusqu'à l'API, et jusque dans le pipeline.">I build test suites that catch the bug before your users do — from the browser, down through the API, all the way into the pipeline.</p>
       <div class="cta-row">
         <a class="btn btn-solid" href="#contact" data-en="Get in touch" data-fr="Me contacter">Get in touch</a>
-        <a class="btn btn-ghost" href="cv-ameni-mhamdi.pdf" download data-en="Download CV" data-fr="Télécharger le CV">Download CV</a>
+        <a class="btn btn-ghost" href="cv-ameni-mhamdi-en.pdf" data-cv-en="cv-ameni-mhamdi-en.pdf" data-cv-fr="cv-ameni-mhamdi.pdf" download data-en="Download CV" data-fr="Télécharger le CV">Download CV</a>
       </div>
     </div>
 
@@ -765,8 +765,8 @@
     <div class="elsewhere">
       <a href="tel:+21652120300">+216 52 120 300</a>
       <a href="https://www.linkedin.com/in/mhamdi-ameni/" rel="me noopener" target="_blank">LinkedIn</a>
-      <a href="https://github.com/AmeniMhamdy" rel="me noopener" target="_blank">GitHub</a>
-      <a href="cv-ameni-mhamdi.pdf" download data-en="Download CV" data-fr="Télécharger le CV">Download CV</a>
+      <a href="https://github.com/AmeniMhamdi" rel="me noopener" target="_blank">GitHub</a>
+      <a href="cv-ameni-mhamdi-en.pdf" data-cv-en="cv-ameni-mhamdi-en.pdf" data-cv-fr="cv-ameni-mhamdi.pdf" download data-en="Download CV" data-fr="Télécharger le CV">Download CV</a>
     </div>
 
     <footer>
@@ -908,6 +908,10 @@
 
     langBtns.forEach(function (b) {
       b.setAttribute('aria-pressed', String(b.dataset.lang === next));
+    });
+
+    document.querySelectorAll('[data-cv-en]').forEach(function (a) {
+      a.setAttribute('href', a.getAttribute('data-cv-' + next));
     });
 
     paintStats(true);
